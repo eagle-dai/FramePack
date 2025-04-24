@@ -401,6 +401,11 @@ with block:
     end_button.click(fn=end_process)
 
 
+# fix launch issue if proxy is set
+os.environ.pop("HTTP_PROXY", None)
+os.environ.pop("HTTPS_PROXY", None)
+os.environ["NO_PROXY"] = "127.0.0.1,localhost"
+
 block.launch(
     server_name=args.server,
     server_port=args.port,
